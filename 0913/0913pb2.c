@@ -10,25 +10,27 @@ int main(void) {
     printf("col size:");
     scanf("%d", &col);
 
-    int** arr;
+    int** arr = (int**)malloc(sizeof(int*) * col);
 
-    arr =  malloc(sizeof(int) * col * row);
+    for(int i=0; i<col; i++) {
+        *(arr+i) = (int*)malloc(sizeof(int)*row);
+    }
 
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             *(*(arr + j) + i) = (i*i) + (j*j);
-            // printf("%d %d %d %d\n",*(*(arr+j)+i), i, j, (i*i) + (j*j));
-        }
-    }
-
-    /*
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < col; j++) {
             printf("%4d",*(*(arr+j)+i));
         }
         printf("\n");
     }
-    */
+
+    for(int i=0; i<row; i++) {
+        free(*(arr+i));
+        printf("free arr[%d]\n", i);
+    }
+
+    free(arr);
+    printf("free arr");
 
     return 0;
 }
