@@ -57,6 +57,7 @@ int main(void) {
         case -1:
             addP(&terms[sc], terms[sb].coef, terms[sb].expon);
             sb++;
+            sc++;
             break;
         case 0:
             if ((terms[sa].coef + terms[sb].coef) == 0) {
@@ -67,26 +68,36 @@ int main(void) {
             addP(&terms[sc], terms[sa].coef + terms[sb].coef, terms[sa].expon);
             sa++;
             sb++;
+            sc++;
             break;
         case 1:
             addP(&terms[sc], terms[sa].coef, terms[sa].expon);
             sa++;
+            sc++;
             break;
         }
-        sc++;
     }
 
-    fc = sc - 1; // ?? 나중에 이유 파악 (질문)
+    fc = sc; // ?? 나중에 이유 파악 (질문)
     sc = fb + 1;
 
-    //printf("sa %d fa %d sb %d fb %d sc %d fc %d\n",sa,fa,sb,fb,sc,fc);
+    // printf("sa %d fa %d sb %d fb %d sc %d fc %d\n",sa,fa,sb,fb,sc,fc);
 
     printf("\nC(x):");
+    if (sc == fc) printf("0");
+    else {
+        for (int i = sc; i < fc; i++) printf("%d^%d + ", terms[i].coef, terms[i].expon);
+            printf("%d^%d\n", terms[fc].coef, terms[fc].expon);
+
+    }
+    
+    /*
     if (sc <= fc) { // sc 이후로 무언가 입력되었을때: > 이렇게 처리해도 되는 것인지? (질문)
         for (int i = sc; i < fc; i++) printf("%d^%d + ", terms[i].coef, terms[i].expon);
         printf("%d^%d\n", terms[fc].coef, terms[fc].expon);
     }
     else printf("0"); // == 아무것도 입력이 안 되었다 == C(x) = 0
+    */
 
     return 0;
 }
