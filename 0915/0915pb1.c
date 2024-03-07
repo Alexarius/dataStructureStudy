@@ -78,7 +78,7 @@ int main(void) {
         }
     }
 
-    fc = sc; // ?? 나중에 이유 파악 (질문)
+    fc = sc; // (?? 나중에 이유 파악 (질문)) < 어느 정도 수정
     sc = fb + 1;
 
     // printf("sa %d fa %d sb %d fb %d sc %d fc %d\n",sa,fa,sb,fb,sc,fc);
